@@ -1,7 +1,7 @@
 alarm_sound="";
 objects = [];
 function preload(){
-    alarm_sound = loadSound("my_baby.mp3");
+    alarm_song = loadSound("my_baby.mp3");
 }
 function setup(){
     canvas = createCanvas(380,380);
@@ -17,7 +17,7 @@ function modelLoaded(){
 }
 function gotResults(error,results){
     if(error){
-        console.log(error);
+        console.log(error)
     }
     console.log(results);
     objects = results;
@@ -26,17 +26,19 @@ function draw(){
     image(video,0,0,380,380);
     object_Detector.detect(video,gotResults);
     for(i = 0 ; i < objects.length ; i++){
-        if(objects[i].label = "person"){
+
+        if(objects[i].label == "person"){
             document.getElementById("status").innerHTML = "Baby Detected";
-            alarm_sound.stop();
+            alarm_song.stop();
         }
         else{
             document.getElementById("status").innerHTML = "Baby Not Detected";
-            alarm_sound.play();
+            alarm_song.play();
             }
-            if(objects.length = 0){
+            if(objects.length < 0){
                 document.getElementById("status").innerHTML = "Baby Not Detected";
-                alarm_sound.play();
-}
+                alarm_song.play();
+    }
+
 }
 }
