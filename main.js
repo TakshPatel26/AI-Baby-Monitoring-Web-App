@@ -6,7 +6,7 @@ function preload(){
 function setup(){
     canvas = createCanvas(380,380);
     canvas.center();
-    video = createCapture(VIDEO);
+    video= createCapture(VIDEO);
     video.size(380,380);
     video.hide();
     object_Detector = ml5.objectDetector('cocossd',modelLoaded);
@@ -25,7 +25,7 @@ function gotResults(error,results){
 function draw(){
     image(video,0,0,380,380);
     object_Detector.detect(video,gotResults);
-    for(i = 0; i < objects.length; i++){
+    for(i = 0 ; i < objects.length ; i++){
         if(objects[i].label = "person"){
             document.getElementById("status").innerHTML = "Baby Detected";
             alarm_sound.stop();
@@ -33,10 +33,10 @@ function draw(){
         else{
             document.getElementById("status").innerHTML = "Baby Not Detected";
             alarm_sound.play();
-        }
-    }
-    if(objects.length = 0){
-        document.getElementById("status").innerHTML = "Baby Not Detected";
-        alarm_sound.play();
-    }
+            }
+            if(objects.length = 0){
+                document.getElementById("status").innerHTML = "Baby Not Detected";
+                alarm_sound.play();
+}
+}
 }
